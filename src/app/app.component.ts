@@ -1,20 +1,24 @@
 import { Component,ViewChild,AfterViewInit} from '@angular/core';
-// import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
+export class AppComponent implements AfterViewInit  {
   title = 'My first app';
-  // id:number = 127
+   myId:number = 127
+   message:any;
+   childoutput:any;
 
-  // @ViewChild(SidebarComponent) childcomp;
-  // constructor() {
-  //   console.log(this.childcomp);
-  // }
-  // ngAfterViewInit(): void {
-  //   console.log(this.childcomp);
-  // }
+  @ViewChild(SidebarComponent)  childcomp:any;
+
+  ngAfterViewInit() {
+    console.log(this.childcomp);
+    this.message = this.childcomp.childmsg
+  }
+  receivemsg($event:any) {
+    this.childoutput = $event;
+  }
 }

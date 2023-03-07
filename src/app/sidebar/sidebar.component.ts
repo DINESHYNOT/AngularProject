@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +8,16 @@ import { Component,Input } from '@angular/core';
 })
 export class SidebarComponent {
   title :string = "Dinesh Kumar";
-  // @Input() idno:number;
+  @Input()  idno:any; //parent to child
 
   childmsg : string = 'Message from child'
+
+  childmsg_outout = "using Output Method"
+
+  @Output() msgEvent = new EventEmitter();
+
+  myFunc() {
+    this.msgEvent.emit(this.childmsg_outout);
+  }
 
 }
